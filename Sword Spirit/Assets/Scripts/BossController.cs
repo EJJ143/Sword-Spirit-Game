@@ -18,10 +18,10 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xAxisInput = Input.GetAxis("Horizontal");
-        zAxisInput = Input.GetAxis("Vertical");
+      //  xAxisInput = Input.GetAxis("Horizontal");
+        //zAxisInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * speed * xAxisInput * Time.deltaTime);
-        transform.Translate(Vector3.right * speed * zAxisInput * Time.deltaTime);
+        //transform.Translate(Vector3.forward * speed * xAxisInput * Time.deltaTime);
+        //transform.Translate(Vector3.right * speed * zAxisInput * Time.deltaTime);
     }
 }
