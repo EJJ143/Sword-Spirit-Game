@@ -5,8 +5,8 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     [SerializeField] private float xAxisInput;
-    [SerializeField] private float yAxisInput;
-    [SerializeField] private float speed = 10;
+    [SerializeField] private float zAxisInput;
+    [SerializeField] private float speed = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,9 @@ public class BossController : MonoBehaviour
     void Update()
     {
         xAxisInput = Input.GetAxis("Horizontal");
-        yAxisInput = Input.GetAxis("vertical");
+        zAxisInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.right * speed * xAxisInput * Time.deltaTime);
-        transform.Translate(Vector3.up * speed * yAxisInput * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * xAxisInput * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * zAxisInput * Time.deltaTime);
     }
 }
