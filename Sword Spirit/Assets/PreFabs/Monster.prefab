@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 231611730019699756}
   - component: {fileID: 5510592738567988653}
   m_Layer: 0
-  m_Name: BigBoss
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
