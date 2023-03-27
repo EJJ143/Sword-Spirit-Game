@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] private float xAxisInput;
-    [SerializeField] private float zAxisInput;
-    [SerializeField] private float speed = 30;
+   // [SerializeField] private float xAxisInput;
+   // [SerializeField] private float zAxisInput;
+   // [SerializeField] private float speed = 30;
 
     // Start is called before the first frame update
     void Start()
