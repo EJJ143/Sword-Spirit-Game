@@ -7,12 +7,14 @@ public class PlayerActions : MonoBehaviour
 {
     [SerializeField] private TextMeshPro useText;
     [SerializeField] private new Transform camera;
-    [SerializeField] private float maxUseDistance = 5f;
+    [SerializeField] private float maxUseDistance = 12f;
     [SerializeField] private LayerMask useLayer;
-
+    [SerializeField] private bool hasntBeenActivited = true;
+  
     public void OnInteract()
     {  // create ray from camera z axis that will return true if hit another collieder in a certian distance
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer)) // will be true if ray created
+        {
             if (hit.collider.TryGetComponent<DoorController>(out DoorController doorScript))
             {
                 if (doorScript.isOpen)
@@ -21,7 +23,16 @@ public class PlayerActions : MonoBehaviour
                     doorScript.open(transform.position);
 
             } //if object we hit has the door controller script
-    }
+
+            if (hit.collider.TryGetComponent<BossController>(out BossController bossScript) && bossScript.isAliveCurrent)
+            {
+                bossScript.wakeUp();
+                hasntBeenActivited = false;
+            }
+        }
+    } // With right shift button
+
+    //public void OnAttack
 
     // Start is called before the first frame update
     void Start()
@@ -29,26 +40,37 @@ public class PlayerActions : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer)
-            && hit.collider.TryGetComponent<DoorController>(out DoorController doorscript))
+        if(Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
         {
-            if (doorscript.isOpen)
-                useText.SetText("Close Door [Right Shift]");
-            else
-                useText.SetText("Open Door [Right Shift]");
+            if (hit.collider.TryGetComponent<DoorController>(out DoorController doorScript))
+            {
+                if (doorScript.isOpen)
+                    useText.SetText("Close Door [Right Shift]");
+                else
+                    useText.SetText("Open Door [Right Shift]");
 
-            useText.gameObject.SetActive(true);
-            useText.transform.position = hit.point - (hit.point - camera.position).normalized * 0.01f;
-            useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;
+                useText.gameObject.SetActive(true);
+                useText.transform.position = hit.point - (hit.point - camera.position).normalized * 0.01f;
+                useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;
+            }
+
+            if(hit.collider.TryGetComponent<BossController>(out BossController bossScript))
+            {
+                if (bossScript.isAliveCurrent && hasntBeenActivited) // once interacted with 'has been activited' is set to false 
+                    useText.SetText("Interact [Right Shift]");
+                else
+                    useText.SetText("Enemey has been purged");
+
+                useText.gameObject.SetActive(true);
+                useText.transform.position = hit.point - (hit.point - camera.position).normalized * 0.01f;
+                useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;
+            }
         }
-
         else
         {
             useText.gameObject.SetActive(false);
         }
-
     }
 }
