@@ -38,6 +38,10 @@ public class BossController : MonoBehaviour
     private void startMoving()
     {
         //things to check before start moving
+
+        if (coroutineHolder != null)
+            StopCoroutine(coroutineHolder);
+
         coroutineHolder = StartCoroutine(moveBoss());
     }
 

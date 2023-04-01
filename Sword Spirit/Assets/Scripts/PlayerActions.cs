@@ -32,7 +32,10 @@ public class PlayerActions : MonoBehaviour
         }
     } // With right shift button
 
-    //public void OnAttack
+    public void OnAttack()
+    {
+        Debug.Log("HI");
+    }
 
     // Start is called before the first frame update
     void Start()
