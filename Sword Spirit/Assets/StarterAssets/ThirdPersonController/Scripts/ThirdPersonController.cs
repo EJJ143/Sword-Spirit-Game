@@ -80,7 +80,7 @@ namespace StarterAssets
         private float _cinemachineTargetPitch;
 
         // player
-        private float _speed;
+        private float _speed; 
         private float _animationBlend;
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
@@ -109,6 +109,13 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+
+        //private void informAnimator()
+        //{
+        //    if(_input.move > )
+        //    return _input.move;
+        //}
+
 
         private bool IsCurrentDeviceMouse
         {
