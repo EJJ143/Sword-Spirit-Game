@@ -270,6 +270,9 @@ namespace StarterAssets
 
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+
+                // my add on
+                _animator.SetBool(_animIDPlayerInput, true);
             }
 
 
