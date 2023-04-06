@@ -9,7 +9,6 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private new Transform camera;
     [SerializeField] private float maxUseDistance = 12f;
     [SerializeField] private LayerMask useLayer;
-    [SerializeField] private bool hasntBeenActivited = true;
   
     public void OnInteract()
     {  // create ray from camera z axis that will return true if hit another collieder in a certian distance
@@ -24,10 +23,9 @@ public class PlayerActions : MonoBehaviour
 
             } //if object we hit has the door controller script
 
-            if (hit.collider.TryGetComponent<BossController>(out BossController bossScript) && bossScript.isAliveCurrent)
+            if (hit.collider.TryGetComponent<BossController>(out BossController bossScript) && bossScript.getBossStatus() && !bossScript.getActivitionState())
             {
-                bossScript.wakeUp();
-                hasntBeenActivited = false;
+                bossScript.setActivitionState();
             }
         }
     } // With right shift button
@@ -61,7 +59,7 @@ public class PlayerActions : MonoBehaviour
 
             if(hit.collider.TryGetComponent<BossController>(out BossController bossScript))
             {
-                if (bossScript.isAliveCurrent && hasntBeenActivited) // once interacted with 'has been activited' is set to false 
+                if (bossScript.getBossStatus() && !bossScript.getActivitionState()) 
                     useText.SetText("Interact [Right Shift]");
                 else
                     useText.SetText("Enemey has been purged");
