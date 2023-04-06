@@ -59,7 +59,7 @@ public class PlayerActions : MonoBehaviour
 
             if(hit.collider.TryGetComponent<BossController>(out BossController bossScript))
             {
-                if (bossScript.getBossStatus() && !bossScript.getActivitionState()) 
+                if (!bossScript.getActivitionState()) 
                     useText.SetText("Interact [Right Shift]");
                 else
                     useText.SetText("Enemey has been purged");
