@@ -57,7 +57,7 @@ public class PlayerActions : MonoBehaviour
                 useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;
             }
 
-            if(hit.collider.TryGetComponent<BossController>(out BossController bossScript))
+            if(!hit.collider.TryGetComponent<BossController>(out BossController bossScript))
             {
                 if (!bossScript.getActivitionState()) 
                     useText.SetText("Interact [Right Shift]");
