@@ -14,14 +14,12 @@ public class DoorController : MonoBehaviour
     private Vector3 startRotationN; // Stores the current rotation of object
     private Vector3 startRotationNRight;
     private Vector3 forward;  // Store axis that we want to compare with player position to
-
     private Coroutine animationCoroutine; // This store a reference to an open or close door method 
 
     public bool isOpen = false;  // Keeps track if door is open or closed
 
     [Header("The control door is the left one, while companion door is right")]
     public GameObject rightDoor;
-
 
     private void Awake()
     {

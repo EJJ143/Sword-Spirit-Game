@@ -7,6 +7,7 @@ public class BossController : MonoBehaviour
 {
     [Header("Boss status")]
     [SerializeField] private bool activited = false;
+    [SerializeField] private bool alreadyActivited = false;
     [SerializeField] private bool isAliveCurrently = true; // wil be updated
     [SerializeField] private float healthBarNumber;
 
@@ -17,19 +18,33 @@ public class BossController : MonoBehaviour
     [SerializeField] private float xAxisInput = -1;
 
     private Coroutine coroutineHolder;
+    private Animator animator;
+    private bool hasAnimator;
+    private int animIDActivite;
 
     [Header("Player GameObject goes here, needed for tracking")]
     public GameObject player;
 
-    void Start()
-    {       
 
+    void Start()
+    {
+        hasAnimator = TryGetComponent(out animator);
+
+        if (hasAnimator)
+            animIDActivite = Animator.StringToHash("Activite");
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (activited)
+        if (activited && !alreadyActivited)
+        {
             wakeUp();
+            isAliveCurrently = true;
+        }  // If The boss hasn't been activited then wake him up
+        else if (activited && isAliveCurrently)  // If the boss has been awakened and is still alive keep him fighting
+            startMoving();
+        else if (!isAliveCurrently)
+            sleep();
     }
 
     private void OnCollisionEnter(Collision player)
@@ -38,10 +53,15 @@ public class BossController : MonoBehaviour
         //if boss sword hitbox hits player then player lose health
     }
 
-    public void wakeUp()
+    private void wakeUp()
     {
-        startMoving();
-    }
+        animator.SetBool(animIDActivite, true);
+    }  // This is what happens when boss is first awakened
+
+    private void sleep()
+    {
+
+    }  // This is what happens after boss is defeated
 
     private void startMoving()
     {
@@ -83,15 +103,15 @@ public class BossController : MonoBehaviour
     public bool getBossStatus()
     {
         return isAliveCurrently;
-    }
+    }  // Get if boss is still alive
 
     public bool getActivitionState()
     {
         return activited;
-    }
+    }  // Get if boss is activited
 
     public void setActivitionState()
     {
         activited = true;
-    }
+    }  // Activte the boss
 }
