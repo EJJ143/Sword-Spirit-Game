@@ -16,6 +16,12 @@ public class PlayerActions : MonoBehaviour
         health -= 10;
     }
 
+    public void removeHealth(string typeOfAttack)
+    {
+        if (typeOfAttack.CompareTo("specialAttack") == 0)
+            health -= 40;
+    }
+
     void Update()
     {
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
