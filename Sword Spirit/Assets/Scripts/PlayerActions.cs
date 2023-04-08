@@ -9,6 +9,12 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private new Transform camera;  // The player's camera
     [SerializeField] private float maxUseDistance = 12f;  // The distance at which the player can interact with objects
     [SerializeField] private LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
+    [SerializeField] private float health = 100;
+
+    public void removeHealth()
+    {
+        health -= 10;
+    }
 
     void Update()
     {
@@ -72,6 +78,4 @@ public class PlayerActions : MonoBehaviour
     {
         Debug.Log("HI");
     }  // With E button
-
-
 }

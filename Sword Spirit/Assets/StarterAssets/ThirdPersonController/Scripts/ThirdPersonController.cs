@@ -111,13 +111,6 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
-        //private void informAnimator()
-        //{
-        //    if(_input.move > )
-        //    return _input.move;
-        //}
-
-
         private bool IsCurrentDeviceMouse
         {
             get

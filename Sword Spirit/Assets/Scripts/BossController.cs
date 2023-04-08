@@ -24,10 +24,20 @@ public class BossController : MonoBehaviour
 
     [Header("Player GameObject goes here, needed for tracking")]
     public GameObject player;
+    private PlayerActions playerScript;
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerScript.removeHealth();
+
+    }
 
     void Start()
     {
+        playerScript = GetComponent<PlayerActions>();
+
         hasAnimator = TryGetComponent(out animator);
 
         if (hasAnimator)
@@ -43,7 +53,7 @@ public class BossController : MonoBehaviour
         }  // If The boss hasn't been activited then wake him up
         else if (activited && isAliveCurrently)  // If the boss has been awakened and is still alive keep him fighting
             startMoving();
-        else if (!isAliveCurrently)
+        else if (!isAliveCurrently)  // If boss is no longer alive then...
             sleep();
     }
 
