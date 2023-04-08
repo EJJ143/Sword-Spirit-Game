@@ -10,6 +10,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private bool alreadyActivited = false;
     [SerializeField] private bool isAliveCurrently = true; // wil be updated
     [SerializeField] private float healthBarNumber;
+    [SerializeField] private float health;
 
     [SerializeField] private float speed = 1;
     [SerializeField] private int waitTime = 10;
@@ -31,7 +32,8 @@ public class BossController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             playerScript.removeHealth();
-
+        if (other.CompareTag("PlayerSword"))
+            health -= 5;
     }
 
     void Start()
