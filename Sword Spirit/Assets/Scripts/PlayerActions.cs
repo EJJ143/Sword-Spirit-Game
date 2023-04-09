@@ -5,26 +5,28 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro useText;  // The text we will be using to display messages live
-    [SerializeField] private new Transform camera;  // The player's camera
-    [SerializeField] private float maxUseDistance = 12f;  // The distance at which the player can interact with objects
-    [SerializeField] private LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
-    [SerializeField] private float health = 100;
-    [SerializeField] private bool hasSword = false;
-    private Animator animator;
-    private bool hasAnimator;
-    private int animIDDoorActive;
+    [Header("Player attributes")]
+    [SerializeField] private float health = 100;  // The player's health duh
+    [SerializeField] private bool hasSword = false;  // The player has picked up the sword in the room
+    [SerializeField] private float maxUseDistance = 20f;  // The distance at which the player can interact with objects
+ 
+    private Animator animator;  // The player animator 
+    private bool hasAnimator;   // If the player has an animator
+    private int animIDDoorActive;  // id for parameters in the player's animator to update
+
+    [Header("The layer that defines what objects the player can interact with")]
+    public LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
+    [Header("The text object that the player will call upon")]
+    public TextMeshPro useText;  // The text we will be using to display messages live
+    [Header("The main camera of the player")]
+    public new Transform camera;  // The player's camera
 
     private void Start()
     {
-        hasAnimator = TryGetComponent(out animator);
 
-        if (hasAnimator)
-            animIDDoorActive = Animator.StringToHash("DoorActive");
-    }
+
+    }  // Things to do in the first frame
  
-
-
     void Update()
     {
         //animator.SetBool(animIDDoorActive, false); 
@@ -62,22 +64,12 @@ public class PlayerActions : MonoBehaviour
             useText.gameObject.SetActive(false);  // If we have hit anything then set any text to off
     }  // Check this every frame
 
-    public void removeHealth()
-    {
-        health -= 10;
-    }
-
-    public void removeHealth(string typeOfAttack)
-    {
-        if (typeOfAttack.CompareTo("specialAttack") == 0)
-            health -= 40;
-    }
-
     private void setRemainingText(RaycastHit hit)
     {
         useText.gameObject.SetActive(true);  // Activite the text so we can see it
         useText.transform.position = hit.point - (hit.point - camera.position).normalized * .04f + new Vector3(-1.9f, 0, 0);  // How far awy the text will be from the door ew .01
         useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;  // Have the text move along with camera        
+
     }  // When true the displayed text will be prepared
 
     public void OnInteract()
@@ -118,4 +110,15 @@ public class PlayerActions : MonoBehaviour
     {
         Debug.Log("Moved around some");
     }  // With space button
+
+    public void removeHealth()
+    {
+        health -= 10;
+    }
+
+    public void removeHealth(string typeOfAttack)
+    {
+        if (typeOfAttack.CompareTo("specialAttack") == 0)
+            health -= 40;
+    }
 }
