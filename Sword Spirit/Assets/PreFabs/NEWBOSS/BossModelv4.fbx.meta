@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f3d59620a6662a54cbbcb21220ca1cab
+guid: c3cec61a82bd4c14b847800d96812aa1
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -89,7 +89,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: BigBoss:RootJoint
+    rootMotionBoneName: RootJoint
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

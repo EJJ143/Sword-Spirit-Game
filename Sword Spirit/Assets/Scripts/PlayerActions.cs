@@ -83,6 +83,7 @@ public class PlayerActions : MonoBehaviour
             if (hit.collider.TryGetComponent<DoorController>(out DoorController doorScript))
             {
                 animator.SetBool(animIDDoorActive, true);
+                Debug.Log("animation should play");
 
                 if (doorScript.isOpen)
                     doorScript.close();
