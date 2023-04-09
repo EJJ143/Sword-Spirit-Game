@@ -10,7 +10,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private bool alreadyActivited = false;
     [SerializeField] private bool isAliveCurrently = true; // wil be updated
     [SerializeField] private float healthBarNumber;
-    [SerializeField] private float health;
+    [SerializeField] private float health = 250;
 
     [SerializeField] private float speed = 1;
     [SerializeField] private int waitTime = 10;
@@ -23,27 +23,31 @@ public class BossController : MonoBehaviour
     private bool hasAnimator;
     private int animIDActivite;
 
-    [Header("Player GameObject goes here, needed for tracking")]
-    public GameObject player;
-    private PlayerActions playerScript;
+   // [Header("Player GameObject goes here, needed for tracking")]
+    //public GameObject player;
+    //private PlayerActions playerScript;
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            playerScript.removeHealth();
-        if (other.CompareTag("PlayerSword"))
-            health -= 5;
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //        playerScript.removeHealth();
+    //    if (other.CompareTag("PlayerSword"))
+    //        health -= 5;
+    //}
 
     void Start()
     {
-        playerScript = GetComponent<PlayerActions>();
+       // hasAnimator = TryGetComponent(out animator);
 
-        hasAnimator = TryGetComponent(out animator);
+        animator = GetComponentInParent<Animator>();  // Since we have this attached to the halberd and NOT the boss
 
-        if (hasAnimator)
+        if (animator != null)                        // Make sure we can infact find the animator in the parent
             animIDActivite = Animator.StringToHash("Activite");
+
+
+        //if (hasAnimator)
+        //    animIDActivite = Animator.StringToHash("Activite");
     }
 
     private void Update()
@@ -52,6 +56,7 @@ public class BossController : MonoBehaviour
         {
             wakeUp();
             isAliveCurrently = true;
+
         }  // If The boss hasn't been activited then wake him up
         else if (activited && isAliveCurrently)  // If the boss has been awakened and is still alive keep him fighting
             startMoving();

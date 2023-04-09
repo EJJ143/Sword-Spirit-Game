@@ -44,6 +44,8 @@ public class PlayerActions : MonoBehaviour
 
             if(hit.collider.TryGetComponent<BossController>(out BossController bossScript))
             {
+                Debug.Log("Looking at boss");
+
                 if (!bossScript.getActivitionState())
                     useText.SetText("Interact [Right Shift]");
                 else if (!bossScript.getBossStatus())
