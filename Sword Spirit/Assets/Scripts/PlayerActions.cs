@@ -57,7 +57,7 @@ public class PlayerActions : MonoBehaviour
     private void setRemainingText(RaycastHit hit)
     {
         useText.gameObject.SetActive(true);  // Activite the text so we can see it
-        useText.transform.position = hit.point - (hit.point - camera.position).normalized * .04f;  // How far awy the text will be from the door ew .01
+        useText.transform.position = hit.point - (hit.point - camera.position).normalized * .04f + new Vector3(-1.9f, 0, 0);  // How far awy the text will be from the door ew .01
         useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;  // Have the text move along with camera        
     }  // When true the displayed text will be prepared
 
