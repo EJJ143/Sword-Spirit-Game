@@ -7005,6 +7005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossModel
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 080017df9dfc829429e60b2978d35f80, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3141427223ec5054fa2b8b3cca7acc10, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 080017df9dfc829429e60b2978d35f80, type: 3}
 --- !u!1 &872704605
