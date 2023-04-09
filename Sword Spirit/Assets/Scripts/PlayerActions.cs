@@ -12,7 +12,7 @@ public class PlayerActions : MonoBehaviour
  
     private Animator animator;  // The player animator 
     private bool hasAnimator;   // If the player has an animator
-    private int animIDDoorActive;  // id for parameters in the player's animator to update
+    private int animIDPressedAttack;  // id for parameters in the player's animator to update
 
     [Header("The layer that defines what objects the player can interact with")]
     public LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
@@ -23,7 +23,12 @@ public class PlayerActions : MonoBehaviour
 
     private void Start()
     {
+        hasAnimator = TryGetComponent(out animator);  // If animator can be grabbed then assign it to our animator variable, and assign a bool to hasanimator
 
+        if(hasAnimator)  
+        {
+            animIDPressedAttack = Animator.StringToHash("PressedAttack");  // Here we grab the animator parameter
+        }
 
     }  // Things to do in the first frame
  
@@ -104,11 +109,15 @@ public class PlayerActions : MonoBehaviour
     public void OnAttack()
     {
         Debug.Log("Attack!");
+        animator.SetBool(animIDPressedAttack, true);  // Here we updated the PressedAtttack parameter in the animator
+
     }  // With right mose click button
 
     public void OnDodge()
     {
         Debug.Log("Moved around some");
+
+
     }  // With space button
 
     public void removeHealth()
