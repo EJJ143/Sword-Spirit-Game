@@ -10,7 +10,11 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private float maxUseDistance = 12f;  // The distance at which the player can interact with objects
     [SerializeField] private LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
     [SerializeField] private float health = 100;
+    [SerializeField] private bool hasSword = false;
 
+    private int animIDActivite;
+
+    // public UnityEvent OnInteractWithDoor;
     public void removeHealth()
     {
         health -= 10;
@@ -46,6 +50,7 @@ public class PlayerActions : MonoBehaviour
                 else
                     useText.SetText("Enemey is after you");
                 setRemainingText(hit);
+
             }  // If the object we hit has the boss controller script
 
             Debug.DrawLine(camera.position, useText.transform.position, Color.red);
@@ -72,6 +77,10 @@ public class PlayerActions : MonoBehaviour
                 else
                     doorScript.open(transform.position);
 
+                //if (OnInteractWithDoor == null)
+                //    OnInteractWithDoor(this, EventArgs.Empty);
+                // To get the same result as bottom do
+               // OnInteractWithDoor?.Invoke();
             } // If object we hit has the door controller script
 
             if (hit.collider.TryGetComponent<BossController>(out BossController bossScript) // If the object we hit has the boss controller script
@@ -84,6 +93,11 @@ public class PlayerActions : MonoBehaviour
 
     public void OnAttack()
     {
-        Debug.Log("HI");
-    }  // With E button
+        Debug.Log("Attack!");
+    }  // With right mose click button
+
+    public void OnDodge()
+    {
+        Debug.Log("Moved around some");
+    }  // With space button
 }
