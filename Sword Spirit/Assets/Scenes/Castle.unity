@@ -10765,6 +10765,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossModel
       objectReference: {fileID: 0}
+    - target: {fileID: 3020626925830846528, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0012557571
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020626925830846528, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020626925830846528, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00000009362675
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020626925830846528, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
       propertyPath: m_Controller
       value: 
@@ -15144,6 +15160,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1712107823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1985775385771945918, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
+  m_PrefabInstance: {fileID: 1227240007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1773428102 &1712107827
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712107823}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: -0.02730031, y: 0.31748068, z: -0.0012557573}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets:
+  - {x: -0.21712053, y: 8.18232, z: -0.0013592541}
+  m_RotationOffsets:
+  - {x: 0.038186535, y: -174.55933, z: -0.40092617}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 2034073474}
+    weight: 1
 --- !u!1001 &1713489064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17172,6 +17219,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014795815}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2034073474 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8532131976405422108, guid: c3cec61a82bd4c14b847800d96812aa1, type: 3}
+  m_PrefabInstance: {fileID: 1227240007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2034975508
 PrefabInstance:
   m_ObjectHideFlags: 0
