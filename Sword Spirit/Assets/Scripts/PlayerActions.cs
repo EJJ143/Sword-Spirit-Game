@@ -34,7 +34,7 @@ public class PlayerActions : MonoBehaviour
                 else
                     useText.SetText("Open Door [Right Shift]");  // Wirte this on the usetext
                 setRemainingText(hit);
-                Debug.Log("The text should be here");
+             
             }  // If object we hit has the door controller script
 
             if(hit.collider.TryGetComponent<BossController>(out BossController bossScript))
@@ -47,6 +47,8 @@ public class PlayerActions : MonoBehaviour
                     useText.SetText("Enemey is after you");
                 setRemainingText(hit);
             }  // If the object we hit has the boss controller script
+
+            Debug.DrawLine(camera.position, useText.transform.position, Color.red);
         }
         else
             useText.gameObject.SetActive(false);  // If we have hit anything then set any text to off
@@ -55,8 +57,8 @@ public class PlayerActions : MonoBehaviour
     private void setRemainingText(RaycastHit hit)
     {
         useText.gameObject.SetActive(true);  // Activite the text so we can see it
-        useText.transform.position = hit.point - (hit.point - camera.position).normalized * 5f;  // How far awy the text will be from the door ew .01
-        useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;  // Have the text move along with camera
+        useText.transform.position = hit.point - (hit.point - camera.position).normalized * .04f;  // How far awy the text will be from the door ew .01
+        useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;  // Have the text move along with camera        
     }  // When true the displayed text will be prepared
 
     public void OnInteract()
