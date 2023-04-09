@@ -22,21 +22,12 @@ public class PlayerActions : MonoBehaviour
         if (hasAnimator)
             animIDDoorActive = Animator.StringToHash("DoorActive");
     }
-    // public UnityEvent OnInteractWithDoor;
-    public void removeHealth()
-    {
-        health -= 10;
-    }
+ 
 
-    public void removeHealth(string typeOfAttack)
-    {
-        if (typeOfAttack.CompareTo("specialAttack") == 0)
-            health -= 40;
-    }
 
     void Update()
     {
-        animator.SetBool(animIDDoorActive, false); 
+        //animator.SetBool(animIDDoorActive, false); 
 
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
@@ -69,6 +60,17 @@ public class PlayerActions : MonoBehaviour
             useText.gameObject.SetActive(false);  // If we have hit anything then set any text to off
     }  // Check this every frame
 
+    public void removeHealth()
+    {
+        health -= 10;
+    }
+
+    public void removeHealth(string typeOfAttack)
+    {
+        if (typeOfAttack.CompareTo("specialAttack") == 0)
+            health -= 40;
+    }
+
     private void setRemainingText(RaycastHit hit)
     {
         useText.gameObject.SetActive(true);  // Activite the text so we can see it
@@ -82,8 +84,8 @@ public class PlayerActions : MonoBehaviour
         {
             if (hit.collider.TryGetComponent<DoorController>(out DoorController doorScript))
             {
-                animator.SetBool(animIDDoorActive, true);
-                Debug.Log("animation should play");
+                //animator.SetBool(animIDDoorActive, true);
+                //Debug.Log("animation should play");
 
                 if (doorScript.isOpen)
                     doorScript.close();
