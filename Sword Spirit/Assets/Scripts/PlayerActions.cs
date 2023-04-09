@@ -36,7 +36,7 @@ public class PlayerActions : MonoBehaviour
 
     void Update()
     {
-        //animator.SetBool(animIDDoorActive, false); 
+        animator.SetBool(animIDDoorActive, false); 
 
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
@@ -93,8 +93,6 @@ public class PlayerActions : MonoBehaviour
                 //    OnInteractWithDoor(this, EventArgs.Empty);
                 // To get the same result as bottom do
                 // OnInteractWithDoor?.Invoke();
-
-                animator.SetBool(animIDDoorActive, false);
 
             } // If object we hit has the door controller script
 
