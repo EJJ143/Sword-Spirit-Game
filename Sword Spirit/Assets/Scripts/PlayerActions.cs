@@ -11,9 +11,17 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
     [SerializeField] private float health = 100;
     [SerializeField] private bool hasSword = false;
+    private Animator animator;
+    private bool hasAnimator;
+    private int animIDDoorActive;
 
-    private int animIDActivite;
+    private void Start()
+    {
+        hasAnimator = TryGetComponent(out animator);
 
+        if (hasAnimator)
+            animIDDoorActive = Animator.StringToHash("DoorActive");
+    }
     // public UnityEvent OnInteractWithDoor;
     public void removeHealth()
     {
@@ -28,6 +36,8 @@ public class PlayerActions : MonoBehaviour
 
     void Update()
     {
+        //animator.SetBool(animIDDoorActive, false); 
+
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
         {
@@ -72,6 +82,8 @@ public class PlayerActions : MonoBehaviour
         {
             if (hit.collider.TryGetComponent<DoorController>(out DoorController doorScript))
             {
+                animator.SetBool(animIDDoorActive, true);
+
                 if (doorScript.isOpen)
                     doorScript.close();
                 else
@@ -80,7 +92,10 @@ public class PlayerActions : MonoBehaviour
                 //if (OnInteractWithDoor == null)
                 //    OnInteractWithDoor(this, EventArgs.Empty);
                 // To get the same result as bottom do
-               // OnInteractWithDoor?.Invoke();
+                // OnInteractWithDoor?.Invoke();
+
+                animator.SetBool(animIDDoorActive, false);
+
             } // If object we hit has the door controller script
 
             if (hit.collider.TryGetComponent<BossController>(out BossController bossScript) // If the object we hit has the boss controller script

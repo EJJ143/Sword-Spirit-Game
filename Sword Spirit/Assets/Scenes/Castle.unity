@@ -19256,6 +19256,18 @@ PrefabInstance:
       propertyPath: maxUseDistance
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 9010487299833279298, guid: 406b3e78aa278d842b02c79037684019, type: 3}
+      propertyPath: OnInteractWithDoor.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010487299833279298, guid: 406b3e78aa278d842b02c79037684019, type: 3}
+      propertyPath: OnInteractWithDoor.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010487299833279298, guid: 406b3e78aa278d842b02c79037684019, type: 3}
+      propertyPath: OnInteractWithDoor.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406b3e78aa278d842b02c79037684019, type: 3}
 --- !u!1001 &7874246500656693805
