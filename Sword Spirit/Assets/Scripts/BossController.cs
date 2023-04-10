@@ -12,7 +12,10 @@ public class BossController : MonoBehaviour
     [SerializeField] private float healthBarNumber;
     [SerializeField] private float health = 250;
 
+    [Header("Boss movement")]
     [SerializeField] private float speed = 1;
+    public float lockOnSpeed = 10;
+    public float movementSpeed = 10;
     [SerializeField] private int waitTime = 10;
     [SerializeField] private int repeatTime = 20;
     [SerializeField] private float yAxisInput = 1;
@@ -52,7 +55,8 @@ public class BossController : MonoBehaviour
 
         else if (activited && isAliveCurrently)  // Once he's awake and alive
         {
-            startMoving();  // Method to move 
+            //startMoving();  // Method to move
+            Debug.Log("Moving");
 
         }  // If the boss has been awakened and is still alive keep him fighting
         
@@ -79,42 +83,42 @@ public class BossController : MonoBehaviour
 
     }  // This is what happens when boss is first awakened
 
-    private void startMoving()
-    {
-        if (coroutineHolder != null)  //things to check before start moving
-            StopCoroutine(coroutineHolder);
+    //private void startMoving()
+    //{
+    //    if (coroutineHolder != null)  //things to check before start moving
+    //        StopCoroutine(coroutineHolder);
 
-        coroutineHolder = StartCoroutine(moveBoss());
-    }  //This method will check if move boss method is ready to be called
+    //    coroutineHolder = StartCoroutine(moveBoss());
+    //}  //This method will check if move boss method is ready to be called
 
-    IEnumerator moveBoss() //place holder for now
-    {
-        yield return new WaitForSeconds(waitTime); 
+//    IEnumerator moveBoss() //place holder for now
+//    {
+//        yield return new WaitForSeconds(waitTime); 
         
-        int count = 0;
-        while(count <= repeatTime)
-        {   
-            transform.Translate(Vector3.right * speed * xAxisInput * Time.deltaTime);
+//        int count = 0;
+//        while(count <= repeatTime)
+//        {   
+//            transform.Translate(Vector3.right * speed * xAxisInput * Time.deltaTime);
             
-            count++;
+//            count++;
             
-            yield return null;
-        }
+//            yield return null;
+//        }
 
-        yield return new WaitForSeconds(2); 
+//        yield return new WaitForSeconds(2); 
 
-        int count2 = 0;
-        while (count2 <= repeatTime)
-        {
-            transform.Translate(Vector3.up * speed * yAxisInput * Time.deltaTime);
+//        int count2 = 0;
+//        while (count2 <= repeatTime)
+//        {
+//            transform.Translate(Vector3.up * speed * yAxisInput * Time.deltaTime);
            
-            count2++;
+//            count2++;
 
-            yield return null;
-        }
-;
-        Destroy(gameObject);
-    }
+//            yield return null;
+//        }
+//;
+//        Destroy(gameObject);
+//    }
 
     private void dying()
     {
