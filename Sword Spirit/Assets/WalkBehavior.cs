@@ -9,12 +9,14 @@ public class WalkBehavior : StateMachineBehaviour
 
     private Transform boss;
     private BossController bossScript;
+    private Rigidbody bossRigidbody;
+    private bool working;
     private float speedOfLockOn;
-    private float speedTowardTarget;
+    private float forceApplied;
     private Vector3 directionToFace;
     private Quaternion desiredRotation;
     private Vector3 nextPosition;
-    private bool working;
+
 
     private float movementSpeed;
     private float playerRotation;
@@ -27,12 +29,13 @@ public class WalkBehavior : StateMachineBehaviour
 
         boss = GameObject.FindGameObjectWithTag("Boss").transform;
         bossScript = boss.GetChild(0).transform.GetComponent<BossController>();
+        bossRigidbody = boss.GetComponent<Rigidbody>();
 
         working = bossScript.getActivitionState();
         Debug.Log(working); // yesssss
 
         speedOfLockOn = bossScript.lockOnSpeed;
-        speedTowardTarget = bossScript.movementSpeed;
+        forceApplied = bossScript.movementSpeed;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -47,6 +50,13 @@ public class WalkBehavior : StateMachineBehaviour
 
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
 
+        directionToFace.Normalize();
+
+        nextPosition = directionToFace * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament 
+
+        Debug.Log(forceApplied);
+
+        bossRigidbody.AddForce(nextPosition);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -69,7 +79,7 @@ public class WalkBehavior : StateMachineBehaviour
 
         directionToFace.Normalize();
 
-        nextPosition = directionToFace * Time.deltaTime * speedTowardTarget;
+        nextPosition = directionToFace * Time.deltaTime * forceApplied;
 
         boss.transform.Translate(nextPosition);
     }

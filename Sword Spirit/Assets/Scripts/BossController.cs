@@ -13,13 +13,13 @@ public class BossController : MonoBehaviour
     [SerializeField] private float health = 250;
 
     [Header("Boss movement")]
-    [SerializeField] private float speed = 1;
+   // [SerializeField] private float speed = 1;
     public float lockOnSpeed = 10;
     public float movementSpeed = 10;
-    [SerializeField] private int waitTime = 10;
-    [SerializeField] private int repeatTime = 20;
-    [SerializeField] private float yAxisInput = 1;
-    [SerializeField] private float xAxisInput = -1;
+    //[SerializeField] private int waitTime = 10;
+    //[SerializeField] private int repeatTime = 20;
+    //[SerializeField] private float yAxisInput = 1;
+    //[SerializeField] private float xAxisInput = -1;
 
     private Coroutine coroutineHolder; // Will hold any currently executing method
 
