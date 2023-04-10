@@ -38,7 +38,7 @@ public class DoorController : MonoBehaviour
             if (isRotatingDoor)
             {
                 float dot = Vector3.Dot(forward, (playerPosition - transform.position).normalized); // So based on our chosen door vector we compare it to the vector created by the distance between the door and the player, but since every is actually in quaternions, we need to normalize the quaternion ever so often. Normalizing the quaternion means
-                Debug.Log($"Dot: {dot.ToString("N3")}"); // I think it means get dot info to the three decimal place
+                //Debug.Log($"Dot: {dot.ToString("N3")}"); // I think it means get dot info to the three decimal place
                 animationCoroutine = StartCoroutine(DoRotationOpen(dot)); // This starts the Method plus sets a reference to it 
             }  // Check to see if animation should be able to play on this door
         } // In order to open door, it must first be opened

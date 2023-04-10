@@ -24,24 +24,18 @@ public class BossController : MonoBehaviour
     private int animIDActivite;  // Save the variable avtivite here
     private int animIDDied;
 
-    [Header("Player GameObject goes here, needed for tracking")]
-    public GameObject player;
-
-    //private PlayerActions playerScript;
-
     void Start()
     {
         // hasAnimator = TryGetComponent(out animator); Here is the old code to grab animator but only works if the component is in the parent
         //if (hasAnimator)
         //    animIDActivite = Animator.StringToHash("Activite");
 
-
         animator = GetComponentInParent<Animator>();  // Since animator is not in the helberd
 
         if (animator != null)                        // Make sure we can in fact find the animator in the parent
         {
             animIDActivite = Animator.StringToHash("Activite");  // Grab the id for the parameter activite in the general animator
-            animIDDied = Animator.StringToHash("Died");
+            animIDDied = Animator.StringToHash("Alive");
         }
 
 
@@ -130,7 +124,7 @@ public class BossController : MonoBehaviour
 
     public bool getBossStatus()
     {
-        return isAliveCurrently;  // Returns an int 
+        return isAliveCurrently;  // Returns a bool 
 
     }  // Get boss's health
 
