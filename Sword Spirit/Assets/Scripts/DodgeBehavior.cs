@@ -32,6 +32,7 @@ public class DodgeBehavior : StateMachineBehaviour
         radius = characterController.radius;
         height = characterController.height;
         ycenter = characterController.center.y;
+        motionScript.resetDodgeTimerDelta();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -42,6 +43,7 @@ public class DodgeBehavior : StateMachineBehaviour
         characterController.radius = .3f;
         characterController.height = 1;
         characterController.center = new Vector3(0, .6f, 0);
+        motionScript.resetDodgeTimerDelta();
 
     }
 
@@ -53,5 +55,7 @@ public class DodgeBehavior : StateMachineBehaviour
         characterController.radius = radius;
         characterController.height = height;
         characterController.center = new Vector3(0, ycenter, 0);
+
+        motionScript.resetDodgeTimerDelta();
     }
 }

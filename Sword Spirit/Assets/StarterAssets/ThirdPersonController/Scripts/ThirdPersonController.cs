@@ -41,8 +41,12 @@ namespace StarterAssets
 
         [Space(10)]
         [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
+        public float JumpTimeout = 0.50f;  // Will follow same for dodge time out
 
+        [Tooltip("Time required to pass before being able to dodge again. Set to 0f to instantly dodge again")]
+        public float DodgeTimeout = 0.50f;
+
+        [Space(10)]
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
@@ -89,12 +93,14 @@ namespace StarterAssets
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
+        private float _dodgeTimeoutDelta;
         private float _fallTimeoutDelta;
 
         // animation IDs
         private int _animIDSpeed;
         private int _animIDGrounded;
         private int _animIDJump;
+        private int _animIDDodge;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
         private int _animIDPlayerInput;
@@ -149,6 +155,7 @@ namespace StarterAssets
 
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
+            _dodgeTimeoutDelta = 0.0f;  // my own code
             _fallTimeoutDelta = FallTimeout;
         }
 
@@ -173,7 +180,8 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-            _animIDPlayerInput = Animator.StringToHash("PlayerInput");
+            _animIDPlayerInput = Animator.StringToHash("PlayerInput");  // my code
+            _animIDDodge = Animator.StringToHash("Dodge");  // my code
         }
 
         private void GroundedCheck()
@@ -217,8 +225,6 @@ namespace StarterAssets
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
-            
-
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
@@ -229,7 +235,7 @@ namespace StarterAssets
             }  // if there is no input, set the target speed to 0
 
             // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude; // character controller
 
             float speedOffset = 0.1f;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
@@ -275,9 +281,34 @@ namespace StarterAssets
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            // move the player
+            // move the player, uses the Move method from character controller
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            // dodge
+            if (_input.dodge && _dodgeTimeoutDelta <= 0.0f)  // when space it pressed and our cooldown is over
+            {
+                // update animator if using character
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDDodge, true);  // set dodge animation to true, starts dodge animation 
+                    _dodgeTimeoutDelta = DodgeTimeout;
+                }
+            }
+
+            //while we are in the dodging animations , do NOT start decreasing the timer
+
+            // dodge timeout is still there then, note not really related to top so no else if okay?
+            if (_dodgeTimeoutDelta > 0.0f)
+            {
+                _dodgeTimeoutDelta -= Time.deltaTime;  // slowly decrease our cool down
+              
+
+                //// update animator if using character
+                //if (_hasAnimator)
+                //{
+         
+                //}
+            }
 
             // update animator if using character
             if (_hasAnimator)
@@ -285,6 +316,13 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
+        }
+
+        public void resetDodgeTimerDelta()
+        {
+            _dodgeTimeoutDelta = DodgeTimeout;
+              _animator.SetBool(_animIDDodge, false);  // set dodge animation to false, so we dont start dodging will waiting
+            _input.dodge = false;   // If was previously pressed, then it would be true but we dont want, we need to rest it
         }
 
         private void JumpAndGravity()
@@ -297,8 +335,8 @@ namespace StarterAssets
                 // update animator if using character
                 if (_hasAnimator)
                 {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
+                    _animator.SetBool(_animIDJump, false);  // reset to use again
+                    _animator.SetBool(_animIDFreeFall, false); // not playing 
                 }
 
                 // stop our velocity dropping infinitely when grounded
@@ -326,9 +364,9 @@ namespace StarterAssets
                     _jumpTimeoutDelta -= Time.deltaTime;
                 }
             }
-            else
+            else  // If we are NOT grounded, then we are in the air
             {
-                // reset the jump timeout timer
+                // reset the jump timeout timer, so while we are still in the air do NOT start decreasing the timer
                 _jumpTimeoutDelta = JumpTimeout;
 
                 // fall timeout
