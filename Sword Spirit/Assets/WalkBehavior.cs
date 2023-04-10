@@ -80,7 +80,7 @@ public class WalkBehavior : StateMachineBehaviour
         else if(distanceBetween < attackRange - .5f) // then player is too damn close 
         {
             directionToFace.Normalize();
-            nextPosition = -new Vector3(directionToFace.x, 0, directionToFace.z) * Time.deltaTime * forceApplied * 5;  // the next position to move in unit vector, by a small increament neagtive
+            nextPosition = -new Vector3(directionToFace.x, 0, directionToFace.z) * Time.deltaTime * forceApplied * 2.3f;  // the next position to move in unit vector, by a small increament neagtive
             bossRigidbody.AddForce(nextPosition);
         }
 

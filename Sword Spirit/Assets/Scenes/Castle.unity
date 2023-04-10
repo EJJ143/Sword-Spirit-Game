@@ -6255,8 +6255,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.29799706, y: 0.25509402, z: 0.20217758}
-  m_Center: {x: -0.02720305, y: 0.12245304, z: -0.01133037}
+  m_Size: {x: 0.18637191, y: 0.25509402, z: 0.14572413}
+  m_Center: {x: -0.023000678, y: 0.12245304, z: -0.0061339187}
 --- !u!114 &728459921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6271,7 +6271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: b6c8e919a9bd17e419d3f53329536819, type: 2}
   isGlobal: 0
-  blendDistance: 1.05
+  blendDistance: 2
   weight: 1
   priority: 1
 --- !u!1 &731470443
