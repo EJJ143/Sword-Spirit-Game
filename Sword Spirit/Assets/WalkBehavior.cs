@@ -42,7 +42,6 @@ public class WalkBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
-        Debug.DrawRay(boss.transform.position, directionToFace, Color.blue);
 
         desiredRotation = Quaternion.LookRotation(directionToFace); // Using base object's rotation to find rotation needed to match direction to face     
 
