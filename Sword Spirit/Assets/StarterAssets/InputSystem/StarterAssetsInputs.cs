@@ -11,7 +11,8 @@ namespace StarterAssets
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
-		public bool sprint;
+		public bool sprint;  // Follow along with sprint code
+		public bool dodge;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -34,10 +35,15 @@ namespace StarterAssets
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnJump(InputValue value)  // OnJump requires an InputValue type which is defined in to starter screen
 		{
 			JumpInput(value.isPressed);
 		}
+
+		public void OnDodge(InputValue value)  // This method you pass in a Input button, it squeezes the orange
+        {
+			DodgeInput(value.isPressed);  // and grabs the button's pressed state, it passes a bool depending on if the button has been pressed to another method
+        }
 
 		public void OnSprint(InputValue value)
 		{
@@ -60,6 +66,11 @@ namespace StarterAssets
 		{
 			jump = newJumpState;
 		}
+
+		public void DodgeInput(bool newDodgeState)  // This method takes in the bool from OnDodge and updates, pretty simple 
+        {
+			dodge = newDodgeState;  // updates the dodge state
+        }
 
 		public void SprintInput(bool newSprintState)
 		{

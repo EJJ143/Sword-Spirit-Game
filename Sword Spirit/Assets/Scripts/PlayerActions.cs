@@ -113,12 +113,12 @@ public class PlayerActions : MonoBehaviour
 
     }  // With right mose click button
 
-    public void OnDodge()
-    {
-        Debug.Log("Moved around some");
+    //public void OnDodge()
+    //{
+    //    Debug.Log("Moved around some");
 
 
-    }  // With space button
+    //}  // With space button
 
     public void removeHealth()
     {
