@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
-public class WalkBehavior : StateMachineBehaviour
+
+public class swingBehavior : StateMachineBehaviour
 {
     private Transform player;
     private ThirdPersonController motionScript;
@@ -47,7 +48,7 @@ public class WalkBehavior : StateMachineBehaviour
 
         desiredRotation = Quaternion.Euler(0, desiredRotation.eulerAngles.y + 90f, 0); // Update desired rotation so the object only rotates in y axis to match direction, good in flat surfaces
 
-        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn* 1.5f * Time.deltaTime); // begun the actual process of rotating object
 
 
         distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
@@ -65,7 +66,7 @@ public class WalkBehavior : StateMachineBehaviour
 
         desiredRotation = Quaternion.Euler(0, desiredRotation.eulerAngles.y + 90f, 0); // Update desired rotation so the object only rotates in y axis to match direction, good in flat surfaces
 
-        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * 1.5f * Time.deltaTime); // begun the actual process of rotating object
 
         distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
 
@@ -77,7 +78,7 @@ public class WalkBehavior : StateMachineBehaviour
             animator.SetInteger("AttackType", Random.Range(0, 2));
         }
 
-        else if(distanceBetween < attackRange - .5f) // then player is too damn close 
+        else if (distanceBetween < attackRange - .5f) // then player is too damn close 
         {
             directionToFace.Normalize();
             nextPosition = -new Vector3(directionToFace.x, 0, directionToFace.z) * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament neagtive
@@ -101,27 +102,9 @@ public class WalkBehavior : StateMachineBehaviour
 
         desiredRotation = Quaternion.Euler(0, desiredRotation.eulerAngles.y + 90f, 0); // Update desired rotation so the object only rotates in y axis to match direction, good in flat surfaces
 
-        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn*1.5f * Time.deltaTime); // begun the actual process of rotating object
 
         animator.ResetTrigger("Attack");
     }
 
-    private void movement()
-    {
-        directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
-        
-        Debug.DrawRay(boss.transform.position, directionToFace, Color.blue);
-
-        desiredRotation = Quaternion.LookRotation(directionToFace); // Using base object's rotation to find rotation needed to match direction to face     
-
-        desiredRotation = Quaternion.Euler(0, desiredRotation.eulerAngles.y, 0); // Update desired rotation so the object only rotates in y axis to match direction, good in flat surfaces
-
-        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
-
-        directionToFace.Normalize();
-
-        nextPosition = directionToFace * Time.deltaTime * forceApplied;
-
-        boss.transform.Translate(nextPosition);
-    }
 }
