@@ -16,6 +16,7 @@ public class BossController : MonoBehaviour
    // [SerializeField] private float speed = 1;
     public float lockOnSpeed = 10;
     public float movementSpeed = 10;
+    public float attackDistance = 10;
     //[SerializeField] private int waitTime = 10;
     //[SerializeField] private int repeatTime = 20;
     //[SerializeField] private float yAxisInput = 1;

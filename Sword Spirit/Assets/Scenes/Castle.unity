@@ -5024,7 +5024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &626934357
 Transform:
   m_ObjectHideFlags: 0
@@ -14048,7 +14048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1616001216
 Transform:
   m_ObjectHideFlags: 0
@@ -18397,6 +18397,10 @@ PrefabInstance:
     - target: {fileID: 6438565805009305667, guid: 3389b2c6a3cfbd3419368577f954069d, type: 3}
       propertyPath: movementSpeed
       value: 1900000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438565805009305667, guid: 3389b2c6a3cfbd3419368577f954069d, type: 3}
+      propertyPath: attackDistance
+      value: 34.5
       objectReference: {fileID: 0}
     - target: {fileID: 6438565805409165531, guid: 3389b2c6a3cfbd3419368577f954069d, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].x

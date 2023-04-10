@@ -7,12 +7,16 @@ public class WalkBehavior : StateMachineBehaviour
     private Transform player;
     private ThirdPersonController motionScript;
 
+    private float distanceBetween;
+
+
     private Transform boss;
     private BossController bossScript;
     private Rigidbody bossRigidbody;
     private bool working;
     private float speedOfLockOn;
     private float forceApplied;
+    private float attackRange;
     private Vector3 directionToFace;
     private Quaternion desiredRotation;
     private Vector3 nextPosition;
@@ -36,6 +40,21 @@ public class WalkBehavior : StateMachineBehaviour
 
         speedOfLockOn = bossScript.lockOnSpeed;
         forceApplied = bossScript.movementSpeed;
+        attackRange = bossScript.attackDistance;
+
+        directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
+
+        desiredRotation = Quaternion.LookRotation(directionToFace); // Using base object's rotation to find rotation needed to match direction to face     
+
+        desiredRotation = Quaternion.Euler(0, desiredRotation.eulerAngles.y + 90f, 0); // Update desired rotation so the object only rotates in y axis to match direction, good in flat surfaces
+
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
+
+
+        distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
+
+        Debug.Log("distance between " + distanceBetween);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -49,19 +68,43 @@ public class WalkBehavior : StateMachineBehaviour
 
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
 
-        directionToFace.Normalize();
+        distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
 
-        nextPosition = directionToFace * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament 
+        Debug.Log("distance between " + distanceBetween);
 
-        Debug.Log(forceApplied);
+        if (attackRange - 2 <= distanceBetween && distanceBetween <= attackRange + 2) // when we are close enough to attack
+        {
+            animator.SetTrigger("Attack");
+            animator.SetInteger("AttackType", Random.Range(0, 2));
+        }
 
-        bossRigidbody.AddForce(nextPosition);
+        else if(distanceBetween < attackRange - 2) // then player is too damn close 
+        {
+            directionToFace.Normalize();
+            nextPosition = -directionToFace * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament neagtive
+            bossRigidbody.AddForce(nextPosition);
+        }
+
+        else
+        {
+            directionToFace.Normalize();
+            nextPosition = directionToFace * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament positive
+            bossRigidbody.AddForce(nextPosition);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-     
+        directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
+
+        desiredRotation = Quaternion.LookRotation(directionToFace); // Using base object's rotation to find rotation needed to match direction to face     
+
+        desiredRotation = Quaternion.Euler(0, desiredRotation.eulerAngles.y + 90f, 0); // Update desired rotation so the object only rotates in y axis to match direction, good in flat surfaces
+
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
+
+        animator.ResetTrigger("Attack");
     }
 
     private void movement()
