@@ -7,7 +7,6 @@ public class PlayerActions : MonoBehaviour
 {
     [Header("Player attributes")]
     [SerializeField] private float health = 100;  // The player's health duh
-    [SerializeField] private bool hasSword = false;  // The player has picked up the sword in the room
     [SerializeField] private float maxUseDistance = 20f;  // The distance at which the player can interact with objects
  
     private Animator animator;  // The player animator 

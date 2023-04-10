@@ -58,7 +58,6 @@ public class BossController : MonoBehaviour
         {
             //startMoving();  // Method to move
             Debug.Log("Moving");
-
         }  // If the boss has been awakened and is still alive keep him fighting
         
         else if (!isAliveCurrently)  // If boss is no longer alive then...

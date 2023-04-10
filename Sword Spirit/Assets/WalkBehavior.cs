@@ -74,13 +74,13 @@ public class WalkBehavior : StateMachineBehaviour
         if (attackRange - .5f <= distanceBetween && distanceBetween <= attackRange + .5f) // when we are close enough to attack
         {
             animator.SetTrigger("Attack");
-            animator.SetInteger("AttackType", Random.Range(0, 2));
+            animator.SetInteger("AttackType", Random.Range(0, 11));
         }
 
         else if(distanceBetween < attackRange - .5f) // then player is too damn close 
         {
             directionToFace.Normalize();
-            nextPosition = -new Vector3(directionToFace.x, 0, directionToFace.z) * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament neagtive
+            nextPosition = -new Vector3(directionToFace.x, 0, directionToFace.z) * Time.deltaTime * forceApplied * 5;  // the next position to move in unit vector, by a small increament neagtive
             bossRigidbody.AddForce(nextPosition);
         }
 
@@ -90,6 +90,8 @@ public class WalkBehavior : StateMachineBehaviour
             nextPosition = new Vector3(directionToFace.x, 0, directionToFace.z) * Time.deltaTime * forceApplied;  // the next position to move in unit vector, by a small increament positive
             bossRigidbody.AddForce(nextPosition);
         }
+
+        boss.transform.position = new Vector3(boss.transform.position.x, 5.2f, boss.transform.position.z);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -104,6 +106,7 @@ public class WalkBehavior : StateMachineBehaviour
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
 
         animator.ResetTrigger("Attack");
+        animator.ResetTrigger("AttackAgain");
     }
 
     private void movement()
