@@ -172,10 +172,10 @@
                 {
                     "name": "",
                     "id": "e2f9aa65-db06-4c5b-a2e9-41bc8acb9517",
-                    "path": "<DualSenseGamepadHID>/leftStick",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "StickDeadzone",
-                    "groups": "Gamepad;PS4 Controller",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -194,10 +194,10 @@
                 {
                     "name": "",
                     "id": "d1d171b6-19d8-47a6-ba3a-71b6a8e7b3c0",
-                    "path": "<DualSenseGamepadHID>/rightStick",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "InvertVector2(invertX=false),StickDeadzone,ScaleVector2(x=300,y=300)",
-                    "groups": "Gamepad;PS4 Controller",
+                    "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -216,10 +216,10 @@
                 {
                     "name": "",
                     "id": "9f973413-5e27-4239-acee-38c4a63feeba",
-                    "path": "<DualSenseGamepadHID>/rightStickPress",
+                    "path": "<HID::Sony Interactive Entertainment DualSense Edge Wireless Controller>/button5",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PS4 Controller;Gamepad",
+                    "groups": "Gamepad",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -238,10 +238,10 @@
                 {
                     "name": "",
                     "id": "c8fcd86e-dcfd-4f88-8e93-b638cdbf3320",
-                    "path": "<DualSenseGamepadHID>/leftStickPress",
+                    "path": "<HID::Sony Interactive Entertainment DualSense Edge Wireless Controller>/button11",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;PS4 Controller",
+                    "groups": "Gamepad",
                     "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -260,7 +260,7 @@
                 {
                     "name": "",
                     "id": "e98a9960-1820-46d1-88a1-98d4b58c1657",
-                    "path": "<DualSenseGamepadHID>/buttonSouth",
+                    "path": "<HID::Sony Interactive Entertainment DualSense Edge Wireless Controller>/button6",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad;PS4 Controller",
@@ -282,7 +282,7 @@
                 {
                     "name": "",
                     "id": "a5f43d5a-7776-4f06-ba82-bc61f22c5b7b",
-                    "path": "<DualSenseGamepadHID>/rightTrigger",
+                    "path": "<HID::Sony Interactive Entertainment DualSense Edge Wireless Controller>/button8",
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4 Controller",
@@ -297,6 +297,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53f3fc88-87ca-4fd9-80d6-c8307b8b018e",
+                    "path": "<HID::Sony Interactive Entertainment DualSense Edge Wireless Controller>/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false

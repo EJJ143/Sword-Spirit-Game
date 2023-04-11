@@ -6,11 +6,13 @@ using StarterAssets;
 public class swingBehavior : StateMachineBehaviour
 {
     private Transform player;
+    private PlayerActions playerScript;
     private float distanceBetween;
 
     private Transform boss;
     private BossController bossScript;
     private Rigidbody bossRigidbody;
+    private MeshCollider bossSword;
     private float speedOfLockOn;
     private float forceApplied;
     private float attackRange;
@@ -22,8 +24,10 @@ public class swingBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerScript = player.GetComponent<PlayerActions>();
 
         boss = GameObject.FindGameObjectWithTag("Boss").transform;
+        bossSword = boss.GetChild(1).GetComponent<MeshCollider>();  // grab the collider for the halberd
         bossScript = boss.GetChild(0).transform.GetComponent<BossController>();
         bossRigidbody = boss.GetComponent<Rigidbody>();
 
@@ -43,6 +47,14 @@ public class swingBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Collider[] otherCollider = Physics.OverlapBox(bossSword.bounds.center, bossSword.bounds.extents, bossSword.transform.rotation, LayerMask.GetMask("Hit and Hurt boxes")); // grab everything that hits with collidier
+
+        for (int x = 0; x < otherCollider.Length; x++)
+            if (otherCollider[x].name.Equals("PlayerBody"))
+            {
+                playerScript.removeHealth();
+            }
+
         directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
 
         desiredRotation = Quaternion.LookRotation(directionToFace); // Using base object's rotation to find rotation needed to match direction to face     

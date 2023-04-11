@@ -11,7 +11,8 @@ public class PlayerActions : MonoBehaviour
  
     private Animator animator;  // The player animator 
     private bool hasAnimator;   // If the player has an animator
-    private int animIDAttackType;  // id for parameters in the player's animator to update, 
+    private int animIDAttackType;  // id for parameters in the player's animator to update,
+    private int animIDHealth;  // id for parameters in the player's animator to update,
 
     [Header("The layer that defines what objects the player can interact with")]
     public LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
@@ -27,12 +28,15 @@ public class PlayerActions : MonoBehaviour
         if(hasAnimator)  
         {
             animIDAttackType = Animator.StringToHash("AttackType");  // Here we grab the animator parameter for attack type
+            animIDHealth = Animator.StringToHash("Health");
         }
-
+         
     }  // Things to do in the first frame
  
     void Update()
     {
+        animator.SetFloat(animIDHealth, health);
+
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
         {
@@ -111,7 +115,12 @@ public class PlayerActions : MonoBehaviour
 
     public void removeHealth()
     {
-        health -= 10;
+        health -= 20;
+    }
+
+    public float getHealth()
+    {
+        return health;
     }
 
     public void removeHealth(string typeOfAttack)
