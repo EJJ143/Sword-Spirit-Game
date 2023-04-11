@@ -11,7 +11,7 @@ public class PlayerActions : MonoBehaviour
  
     private Animator animator;  // The player animator 
     private bool hasAnimator;   // If the player has an animator
-    private int animIDPressedAttack;  // id for parameters in the player's animator to update
+    private int animIDAttackType;  // id for parameters in the player's animator to update, 
 
     [Header("The layer that defines what objects the player can interact with")]
     public LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
@@ -26,15 +26,13 @@ public class PlayerActions : MonoBehaviour
 
         if(hasAnimator)  
         {
-            animIDPressedAttack = Animator.StringToHash("PressedAttack");  // Here we grab the animator parameter
+            animIDAttackType = Animator.StringToHash("AttackType");  // Here we grab the animator parameter for attack type
         }
 
     }  // Things to do in the first frame
  
     void Update()
     {
-        //animator.SetBool(animIDDoorActive, false); 
-
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
         {
@@ -55,7 +53,7 @@ public class PlayerActions : MonoBehaviour
                 else if (!bossScript.getBossStatus())
                     useText.SetText("Enemey has been purged");
                 else
-                    useText.SetText("Enemey is after you");
+                    useText.SetText("Enemey Awakened");
                 setRemainingText(hit);
 
             }  // If the object we hit has the boss controller script
@@ -70,7 +68,7 @@ public class PlayerActions : MonoBehaviour
     {
         useText.gameObject.SetActive(true);  // Activite the text so we can see it
         useText.transform.position = hit.point - (hit.point - camera.position).normalized * .04f + new Vector3(-1.9f, 0, 0);  // How far awy the text will be from the door ew .01
-        useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;  // Have the text move along with camera        
+       // useText.transform.rotation = Quaternion.LookRotation(hit.point - camera.position).normalized;  // Have the text move along with camera        
 
     }  // When true the displayed text will be prepared
 
@@ -106,16 +104,10 @@ public class PlayerActions : MonoBehaviour
     public void OnAttack()
     {
         Debug.Log("Attack!");
-        animator.SetBool(animIDPressedAttack, true);  // Here we updated the PressedAtttack parameter in the animator
+        animator.SetTrigger("Attack");  // Here we updated the Atttack parameter in the animator this will active animation
+        animator.SetInteger(animIDAttackType, Random.Range(0, 11));
 
     }  // With right mose click button
-
-    //public void OnDodge()
-    //{
-    //    Debug.Log("Moved around some");
-
-
-    //}  // With space button
 
     public void removeHealth()
     {

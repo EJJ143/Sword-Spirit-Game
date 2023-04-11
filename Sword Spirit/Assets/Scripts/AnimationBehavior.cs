@@ -20,6 +20,7 @@ public class AnimationBehavior : StateMachineBehaviour
 
         movementSpeed = motionScript.MoveSpeed;
         playerRotation = motionScript.RotationSmoothTime;
+        animator.ResetTrigger("Attack");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -35,5 +36,7 @@ public class AnimationBehavior : StateMachineBehaviour
     {
         motionScript.MoveSpeed = movementSpeed;
         motionScript.RotationSmoothTime = playerRotation;
+
+        animator.ResetTrigger("Attack");
     }
 }
