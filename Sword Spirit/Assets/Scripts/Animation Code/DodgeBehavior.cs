@@ -24,7 +24,7 @@ public class DodgeBehavior : StateMachineBehaviour
         motionScript = player.GetComponent<ThirdPersonController>();
         characterController = player.GetComponent<CharacterController>();
 
-        Debug.Log("If this works you are awesome and the mc is dodging");
+       // Debug.Log("If this works you are awesome and the mc is dodging");
 
         movementSpeed = motionScript.MoveSpeed;
         playerRotation = motionScript.RotationSmoothTime;

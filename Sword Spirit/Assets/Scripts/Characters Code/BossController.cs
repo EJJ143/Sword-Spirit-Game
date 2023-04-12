@@ -9,7 +9,6 @@ public class BossController : MonoBehaviour
     [SerializeField] private bool activited = false;
     [SerializeField] private bool alreadyActivited = false;
     [SerializeField] private bool isAliveCurrently = true; // wil be updated
-    [SerializeField] private float healthBarNumber;
     [SerializeField] private float health = 250;
 
     [Header("Boss movement")]
@@ -22,7 +21,7 @@ public class BossController : MonoBehaviour
     //[SerializeField] private float yAxisInput = 1;
     //[SerializeField] private float xAxisInput = -1;
 
-    private Coroutine coroutineHolder; // Will hold any currently executing method
+    //private Coroutine coroutineHolder; // Will hold any currently executing method
 
     private Animator animator;   // Grab the parent animator
     private int animIDActivite;  // Save the variable avtivite here
@@ -58,10 +57,11 @@ public class BossController : MonoBehaviour
         {
             //startMoving();  // Method to move
             Debug.Log("Moving");
+
         }  // If the boss has been awakened and is still alive keep him fighting
-        
+
         else if (!isAliveCurrently)  // If boss is no longer alive then...
-            dying();  // Method to end Boss
+            Debug.Log("Boss has died");  // Method to end Boss
 
     }  // Things to happen every frame
 
@@ -122,10 +122,17 @@ public class BossController : MonoBehaviour
 
     private void dying()
     {
-        animator.SetBool(animIDDied, true);  // Start the dying animation
+        animator.SetBool(animIDDied, false);  // Start the dying animation
 
     }  // This is what happens after boss health reaches zero
 
+    public void removeBossHealth()
+    {
+        health -= 10;
+
+        if (health <= 0)
+            dying();
+    }
     public bool getBossStatus()
     {
         return isAliveCurrently;  // Returns a bool 
