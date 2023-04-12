@@ -50,11 +50,14 @@ public class swingBehavior : StateMachineBehaviour
         Collider[] otherCollider = Physics.OverlapBox(bossSword.bounds.center, bossSword.bounds.extents, bossSword.transform.rotation, LayerMask.GetMask("Hit and Hurt boxes")); // grab everything that hits with collidier
 
         for (int x = 0; x < otherCollider.Length; x++)
-            if (otherCollider[x].name.Equals("PlayerBody"))
+            if (otherCollider[x].CompareTag("Player"))  //otherCollider[x].name.Equals("PlayerBody")
             {
                 playerScript.removeHealth();
-                Debug.Log(otherCollider[x].name);
+              //  Debug.Log(otherCollider[x].name);
+                break;
             }
+
+      //  Debug.Log("Player curret health " + playerScript.getHealth());
 
         directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
 

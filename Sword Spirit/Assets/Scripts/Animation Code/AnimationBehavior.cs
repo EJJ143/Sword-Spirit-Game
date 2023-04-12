@@ -19,7 +19,7 @@ public class AnimationBehavior : StateMachineBehaviour
         motionScript = player.GetComponents<ThirdPersonController>()[0];
         //playerScript = player.GetComponent<PlayerActions>();
 
-        Debug.Log("If this works you are awesome / mc isn't moving");
+       // Debug.Log("If this works you are awesome / mc isn't moving");
 
         movementSpeed = motionScript.MoveSpeed;
         playerRotation = motionScript.RotationSmoothTime;

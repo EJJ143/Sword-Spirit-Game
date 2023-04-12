@@ -27,10 +27,11 @@ public class swordBehavior : StateMachineBehaviour
         Collider[] otherCollider = Physics.OverlapBox(hitBox.bounds.center, hitBox.bounds.extents, hitBox.transform.rotation, LayerMask.GetMask("Hit and Hurt boxes")); // grab everything that hits with collidier
 
         for (int x = 0; x < otherCollider.Length; x++)
-            if (otherCollider[x].tag.Equals("Boss hitbox"))
+            if (otherCollider[x].CompareTag("Boss hurtbox"))
             {
                 bossScript.removeBossHealth();
                 Debug.Log(otherCollider[x].name);
+                break;
             }
     }
 

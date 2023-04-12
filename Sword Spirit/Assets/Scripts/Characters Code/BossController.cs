@@ -26,6 +26,7 @@ public class BossController : MonoBehaviour
     private Animator animator;   // Grab the parent animator
     private int animIDActivite;  // Save the variable avtivite here
     private int animIDDied;
+    private int animIDExtra;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class BossController : MonoBehaviour
         {
             animIDActivite = Animator.StringToHash("Activite");  // Grab the id for the parameter activite in the general animator
             animIDDied = Animator.StringToHash("Alive");
+            animIDExtra = Animator.StringToHash("extra");
         }
 
 
@@ -64,18 +66,6 @@ public class BossController : MonoBehaviour
             Debug.Log("Boss has died");  // Method to end Boss
 
     }  // Things to happen every frame
-
-    private void OnCollisionEnter(Collision player)
-    {
-        //if player sword collider hits the boss's legs then boss loses health
-        //    if (other.CompareTag("Player"))
-        //        playerScript.removeHealth();
-
-        //if boss halberd top collider hits the player's body then player lose health
-        //    if (other.CompareTag("PlayerSword"))
-        //        health -= 5;
-
-    }  // Activites when the halberd bottom hits the player which is not what we want........
 
     private void wakeUp()
     {

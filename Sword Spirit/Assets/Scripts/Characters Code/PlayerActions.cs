@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     [Header("Player attributes")]
-    [SerializeField] private float health = 100;  // The player's health duh
+    [SerializeField] private float health = 500;  // The player's health duh
     [SerializeField] private float maxUseDistance = 20f;  // The distance at which the player can interact with objects
  
     private Animator animator;  // The player animator 
@@ -116,11 +116,12 @@ public class PlayerActions : MonoBehaviour
     public void removeHealth()
     {
         health -= 20;
-        animator.SetFloat(animIDHealth, health);
-
+   
         if (health <= 0 && health >= -20)
+        {
+            animator.SetFloat(animIDHealth, health);
             animator.SetInteger(animIDDeathType, Random.Range(1, 4));
-
+        }
     }
 
     public float getHealth()
