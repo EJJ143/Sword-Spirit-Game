@@ -49,10 +49,9 @@ public class WalkBehavior : StateMachineBehaviour
 
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
 
-
         distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
 
-        Debug.Log("distance between " + distanceBetween);
+        // Debug.Log("distance between " + distanceBetween);
 
     }
 
@@ -68,8 +67,6 @@ public class WalkBehavior : StateMachineBehaviour
         boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, desiredRotation, speedOfLockOn * Time.deltaTime); // begun the actual process of rotating object
 
         distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
-
-        Debug.Log("distance between " + distanceBetween);
 
         if (attackRange - .5f <= distanceBetween && distanceBetween <= attackRange + .5f) // when we are close enough to attack
         {

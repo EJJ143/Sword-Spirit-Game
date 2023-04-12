@@ -53,6 +53,7 @@ public class swingBehavior : StateMachineBehaviour
             if (otherCollider[x].name.Equals("PlayerBody"))
             {
                 playerScript.removeHealth();
+                Debug.Log(otherCollider[x].name);
             }
 
         directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects

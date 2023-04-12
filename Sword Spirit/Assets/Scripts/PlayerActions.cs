@@ -35,7 +35,7 @@ public class PlayerActions : MonoBehaviour
  
     void Update()
     {
-        animator.SetFloat(animIDHealth, health);
+       // animator.SetFloat(animIDHealth, health);
 
         // create ray from camera z axis that will return true if hit another collieder in a certian distance in the useable layer
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, maxUseDistance, useLayer))
