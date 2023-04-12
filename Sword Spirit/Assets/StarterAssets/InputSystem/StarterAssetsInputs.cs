@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;  // Follow along with sprint code
 		public bool dodge;
+		public bool attack;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -45,6 +46,11 @@ namespace StarterAssets
 			DodgeInput(value.isPressed);  // and grabs the button's pressed state, it passes a bool depending on if the button has been pressed to another method
         }
 
+		public void OnAttack(InputValue value)
+        {
+			AttackInput(value.isPressed);
+        }
+
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
@@ -70,6 +76,11 @@ namespace StarterAssets
 		public void DodgeInput(bool newDodgeState)  // This method takes in the bool from OnDodge and updates, pretty simple 
         {
 			dodge = newDodgeState;  // updates the dodge state
+        }
+
+		public void AttackInput(bool newAttackState)
+        {
+			attack = newAttackState;
         }
 
 		public void SprintInput(bool newSprintState)

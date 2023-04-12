@@ -31,6 +31,7 @@ public class swordBehavior : StateMachineBehaviour
             {
                 bossScript.removeBossHealth();
                 Debug.Log(otherCollider[x].name);
+                Debug.Log("Boss's current health "+bossScript.getBossHealth());
                 break;
             }
     }
@@ -38,6 +39,6 @@ public class swordBehavior : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        animator.ResetTrigger("Attack");
     }
 }

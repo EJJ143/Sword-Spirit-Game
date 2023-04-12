@@ -129,6 +129,10 @@ public class BossController : MonoBehaviour
 
     }  // Get boss's health
 
+    public float getBossHealth()
+    {
+        return health;
+    }
     public bool getActivitionState()
     {
         return activited; // This is false by default

@@ -53,7 +53,7 @@ public class swingBehavior : StateMachineBehaviour
             if (otherCollider[x].CompareTag("Player"))  //otherCollider[x].name.Equals("PlayerBody")
             {
                 playerScript.removeHealth();
-              //  Debug.Log(otherCollider[x].name);
+                Debug.Log(playerScript.getHealth());
                 break;
             }
 

@@ -21159,6 +21159,10 @@ PrefabInstance:
       value: -2.456494
       objectReference: {fileID: 0}
     - target: {fileID: 6438565805009305667, guid: 3389b2c6a3cfbd3419368577f954069d, type: 3}
+      propertyPath: health
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438565805009305667, guid: 3389b2c6a3cfbd3419368577f954069d, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1510495348}
@@ -21757,7 +21761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9010487299833279298, guid: 406b3e78aa278d842b02c79037684019, type: 3}
       propertyPath: health
-      value: 800
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 9010487299833279298, guid: 406b3e78aa278d842b02c79037684019, type: 3}
       propertyPath: useText

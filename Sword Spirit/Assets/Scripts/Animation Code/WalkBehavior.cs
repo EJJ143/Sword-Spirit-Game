@@ -35,7 +35,7 @@ public class WalkBehavior : StateMachineBehaviour
         bossRigidbody = boss.GetComponent<Rigidbody>();
 
         working = bossScript.getActivitionState();
-        Debug.Log(working); // yesssss
+       // Debug.Log(working); // yesssss
 
         speedOfLockOn = bossScript.lockOnSpeed;
         forceApplied = bossScript.movementSpeed;

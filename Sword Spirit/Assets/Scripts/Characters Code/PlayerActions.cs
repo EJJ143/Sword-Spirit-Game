@@ -28,7 +28,7 @@ public class PlayerActions : MonoBehaviour
 
         if(hasAnimator)  
         {
-            animIDAttackType = Animator.StringToHash("AttackType");  // Here we grab the animator parameter for attack type
+            //animIDAttackType = Animator.StringToHash("AttackType");  // Here we grab the animator parameter for attack type
             animIDHealth = Animator.StringToHash("PlayerHealth");
             animIDDeathType = Animator.StringToHash("DeathType");
         }
@@ -105,13 +105,13 @@ public class PlayerActions : MonoBehaviour
         } 
     } // With right shift button
 
-    public void OnAttack()
-    {
-        //Debug.Log("Attack!");
-        animator.SetTrigger("Attack");  // Here we updated the Atttack parameter in the animator this will active animation
-        animator.SetInteger(animIDAttackType, Random.Range(0, 11));
+    //public void OnAttack()
+    //{
+    //    //Debug.Log("Attack!");
+    //    animator.SetTrigger("Attack");  // Here we updated the Atttack parameter in the animator this will active animation
+    //    animator.SetInteger(animIDAttackType, Random.Range(0, 11));
 
-    }  // With right mose click button
+    //}  // With right mose click button
 
     public void removeHealth()
     {

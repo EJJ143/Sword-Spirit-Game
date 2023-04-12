@@ -44,5 +44,6 @@ public class AnimationBehavior : StateMachineBehaviour
         motionScript.RotationSmoothTime = playerRotation;
 
         animator.ResetTrigger("Attack");
+        motionScript.restAttack();
     }
 }
