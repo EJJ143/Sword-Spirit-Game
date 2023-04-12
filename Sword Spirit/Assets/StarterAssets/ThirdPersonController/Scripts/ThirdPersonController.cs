@@ -94,7 +94,6 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _dodgeTimeoutDelta;
-        private float _attackTimeoutDelta;
         private float _fallTimeoutDelta;
 
         // animation IDs
@@ -158,7 +157,6 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _dodgeTimeoutDelta = 0.0f;  // my own code
-            _attackTimeoutDelta = 0.0f;
             _fallTimeoutDelta = FallTimeout;
         }
 

@@ -56,6 +56,6 @@ public class DodgeBehavior : StateMachineBehaviour
         characterController.height = height;
         characterController.center = new Vector3(0, ycenter, 0);
 
-        motionScript.resetDodgeTimerDelta();
+        motionScript.resetDodgeTimerDelta(); // hello
     }
 }
