@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VictoryBehavior : StateMachineBehaviour
+public class readyBehavior : StateMachineBehaviour
 {
     private audioController speaker;
+
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(Animator.StringToHash("extra"), false);
-
         speaker = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<audioController>();
 
-        speaker.bossMusicEnd();
+        speaker.bossMusicStart();
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
-    }
-
-    //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-   
+      
     }
+
 }
