@@ -56,7 +56,5 @@ public class audioController : MonoBehaviour
     public void walking()
     {
         speaker.PlayOneShot(clipArray[6]);
-
-        speaker.clip = null;
     }
 }
