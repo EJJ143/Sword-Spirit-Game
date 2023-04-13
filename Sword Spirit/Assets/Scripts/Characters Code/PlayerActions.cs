@@ -13,7 +13,8 @@ public class PlayerActions : MonoBehaviour
     private bool hasAnimator;   // If the player has an animator
     private int animIDAttackType;  // id for parameters in the player's animator to update,
     private int animIDHealth;  // id for parameters in the player's animator to update,
-    private int animIDDeathType;  
+    private int animIDDeathType;
+    private MainMenu menu;
 
     [Header("The layer that defines what objects the player can interact with")]
     public LayerMask useLayer;  // Which layer the things that the player can interact with, will exist in
@@ -24,6 +25,8 @@ public class PlayerActions : MonoBehaviour
 
     private void Start()
     {
+        menu = GetComponent<MainMenu>();
+
         hasAnimator = TryGetComponent(out animator);  // If animator can be grabbed then assign it to our animator variable, and assign a bool to hasanimator
 
         if(hasAnimator)  
@@ -138,5 +141,10 @@ public class PlayerActions : MonoBehaviour
     public float getHealth()
     {
         return health;
+    }
+
+    public void restartGame()
+    {
+        menu.mainMenu();
     }
 }
