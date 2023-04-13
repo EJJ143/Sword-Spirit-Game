@@ -5,6 +5,8 @@ using StarterAssets;
 
 public class swingBehavior : StateMachineBehaviour
 {
+    private audioController speaker;
+
     private Transform player;
     private PlayerActions playerScript;
     private float distanceBetween;
@@ -23,6 +25,10 @@ public class swingBehavior : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        speaker = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<audioController>();
+
+        speaker.swing();
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerScript = player.GetComponent<PlayerActions>();
 

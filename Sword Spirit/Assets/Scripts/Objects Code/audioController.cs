@@ -27,7 +27,19 @@ public class audioController : MonoBehaviour
         speaker.clip = null;
         speaker.Stop();
 
-        speaker.clip = clipArray[1];
-        speaker.Play();
+        speaker.PlayOneShot(clipArray[1]);
+    }
+
+    public void died()
+    {
+        speaker.clip = null;
+        speaker.Stop();
+
+        speaker.PlayOneShot(clipArray[2]);
+    }
+
+    public void swing()
+    {
+        speaker.PlayOneShot(clipArray[3]); /// 3 for boss swing 
     }
 }

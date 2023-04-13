@@ -35,6 +35,7 @@ public class DoorController : MonoBehaviour
             if (animationCoroutine != null) /* This is ment to catch an existing open or close methods that still exist, they could interfere with a new open or close method */
                 StopCoroutine(animationCoroutine); // Stop that open or close method
 
+
             if (isRotatingDoor)
             {
                 float dot = Vector3.Dot(forward, (playerPosition - transform.position).normalized); // So based on our chosen door vector we compare it to the vector created by the distance between the door and the player, but since every is actually in quaternions, we need to normalize the quaternion ever so often. Normalizing the quaternion means
@@ -50,6 +51,8 @@ public class DoorController : MonoBehaviour
         {
             if (animationCoroutine != null) /* This is ment to catch an existing open or close methods that still exist, they could interfere with a new open or close method */ 
                 StopCoroutine(animationCoroutine); // Stop any existing animation coroutine 
+
+  
             if(isRotatingDoor)  // Check to see if animation should be able to play on this door
                 animationCoroutine = StartCoroutine(DoRotationClose()); // This starts the Method plus sets a reference to it 
         } // In order to close the door it must first be opened

@@ -85,10 +85,21 @@ public class PlayerActions : MonoBehaviour
                 //animator.SetBool(animIDDoorActive, true);
                 //Debug.Log("animation should play");
 
+
+                AudioSource speaker = hit.collider.GetComponent<AudioSource>();
+
                 if (doorScript.isOpen)
+                {
                     doorScript.close();
+                    speaker.PlayOneShot(speaker.clip);
+                }
+                  
                 else
+                {
                     doorScript.open(transform.position);
+                    speaker.PlayOneShot(speaker.clip);
+                }
+                 
 
                 //if (OnInteractWithDoor == null)
                 //    OnInteractWithDoor(this, EventArgs.Empty);
