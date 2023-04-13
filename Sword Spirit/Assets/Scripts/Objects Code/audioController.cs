@@ -42,4 +42,19 @@ public class audioController : MonoBehaviour
     {
         speaker.PlayOneShot(clipArray[3]); /// 3 for boss swing 
     }
+
+    public void attack1()
+    {
+        speaker.PlayOneShot(clipArray[4]);
+    }
+
+    public void attack2()
+    {
+        speaker.PlayOneShot(clipArray[5]);
+    }
+
+    public void walking()
+    {
+        speaker.PlayOneShot(clipArray[6]);
+    }
 }

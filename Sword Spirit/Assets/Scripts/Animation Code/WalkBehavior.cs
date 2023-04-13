@@ -20,9 +20,8 @@ public class WalkBehavior : StateMachineBehaviour
     private Quaternion desiredRotation;
     private Vector3 nextPosition;
 
-
-    private float movementSpeed;
-    private float playerRotation;
+    private audioController speaker;
+    private AudioSource audioS;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -51,13 +50,19 @@ public class WalkBehavior : StateMachineBehaviour
 
         distanceBetween = Vector3.Distance(player.transform.position, bossRigidbody.position);
 
-        // Debug.Log("distance between " + distanceBetween);
+        speaker = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<audioController>();
+        audioS = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<AudioSource>();
+
+        speaker.walking();
 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (!audioS.isPlaying)
+            speaker.walking();
+
         directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
 
         desiredRotation = Quaternion.LookRotation(directionToFace); // Using base object's rotation to find rotation needed to match direction to face     
