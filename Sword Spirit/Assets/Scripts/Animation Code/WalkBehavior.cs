@@ -60,7 +60,7 @@ public class WalkBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (audioS.)
+        if (audioS.clip != speaker.clipArray[6])
             speaker.walking();
 
         directionToFace = player.transform.position - boss.transform.position; // Vector that is created between two objects
