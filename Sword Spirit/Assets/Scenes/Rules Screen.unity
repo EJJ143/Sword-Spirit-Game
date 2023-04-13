@@ -148,9 +148,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b3ffff3b540a1f84388e2ec84ae79a5f, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -351,20 +351,28 @@ PrefabInstance:
       value: Main Panel for back button shadow
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -376,11 +384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -600
+      value: 91
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631153001626, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -744
+      value: -106
       objectReference: {fileID: 0}
     - target: {fileID: 5012342631894193939, guid: d9e7bd426e082c642822921866c53ef7, type: 3}
       propertyPath: m_text
