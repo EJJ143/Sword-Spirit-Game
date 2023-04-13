@@ -10,6 +10,8 @@ public class swordBehavior : StateMachineBehaviour
     private Transform boss;
     private BossController bossScript;
 
+    private audioController speaker;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,6 +21,12 @@ public class swordBehavior : StateMachineBehaviour
         boss = GameObject.FindGameObjectWithTag("Boss").transform;
         bossScript = boss.GetChild(0).transform.GetComponent<BossController>();
 
+        speaker = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<audioController>();
+
+        if (animator.GetInteger("AttackType") > 5)
+            speaker.attack1();
+        else
+            speaker.attack2();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

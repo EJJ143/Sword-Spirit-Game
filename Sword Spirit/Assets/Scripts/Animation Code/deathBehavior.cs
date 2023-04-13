@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class deathBehavior : StateMachineBehaviour
 {
@@ -16,12 +17,20 @@ public class deathBehavior : StateMachineBehaviour
         speaker = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<audioController>();
 
         speaker.died();
+
+        Transform player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        ThirdPersonController motionScript = player.GetComponents<ThirdPersonController>()[0];
+        //playerScript = player.GetComponent<PlayerActions>();
+
+        // Debug.Log("If this works you are awesome / mc isn't moving");
+        motionScript.MoveSpeed = 0;
+        motionScript.RotationSmoothTime = 0;
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

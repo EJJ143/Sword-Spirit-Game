@@ -60,6 +60,8 @@ public class swingBehavior : StateMachineBehaviour
             {
                 playerScript.removeHealth();
                 Debug.Log(playerScript.getHealth());
+
+                speaker.hurt();
                 break;
             }
 

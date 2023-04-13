@@ -57,4 +57,9 @@ public class audioController : MonoBehaviour
     {
         speaker.PlayOneShot(clipArray[6]);
     }
+
+    public void hurt()
+    {
+        speaker.PlayOneShot(clipArray[7]);
+    }
 }

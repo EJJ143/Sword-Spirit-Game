@@ -8020,6 +8020,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 80b0d4d776d2f684b9ccead8dc23230a, type: 3}
   - {fileID: 8300000, guid: 83ab9aa9e2193184aa479103515d3fc5, type: 3}
   - {fileID: 8300000, guid: 06ccb0394a355714883ccf93052031d2, type: 3}
+  - {fileID: 8300000, guid: 8a16b3e849d1a6d448fb573dc32330bf, type: 3}
 --- !u!1001 &569252068
 PrefabInstance:
   m_ObjectHideFlags: 0
